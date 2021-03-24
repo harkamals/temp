@@ -20,7 +20,7 @@
     - name: creating hello world container
       docker_container:
         name: hello
-        image: dockerhub.com/nginxdemos:plain-text
+        image: artifactory.global/nginxdemos:plain-text
 
       register: hello_cont
 
