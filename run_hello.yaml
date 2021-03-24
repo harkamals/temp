@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+
+  gather_facts: False
+
+  ##--[ tasks ]-----------------
+
+  tasks:
+
+    - name: building `pinger` image
+      docker_image:
+        name: pinger
+
+        source: build
+        build:
+          path: ./pinger
+
+
+    - name: creating hello world container
+      docker_container:
+        name: hello
+        image: dockerhub.com/nginxdemos:plain-text
+
+      register: hello_cont
+
+
+    - name: creating pinger container
+      docker_container:
+        name: pinger
+        image: pinger
+        env:
+          HELLO_ADDR: `{{ hello_cont.container.NetworkSettings.IPAddress }}`
