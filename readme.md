@@ -1,5 +1,5 @@
 
-## pre-requisites
+## Pre-requisites
 
 * python
 * docker

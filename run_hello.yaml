@@ -8,7 +8,7 @@
 
   tasks:
 
-    - name: building `pinger` image
+    - name: building pinger image
       docker_image:
         name: pinger
 
@@ -16,11 +16,10 @@
         build:
           path: ./pinger
 
-
     - name: creating hello world container
       docker_container:
         name: hello
-        image: artifactory.global/nginxdemos:plain-text
+        image: nginxdemos/hello:plain-text
 
       register: hello_cont
 
@@ -30,4 +29,4 @@
         name: pinger
         image: pinger
         env:
-          HELLO_ADDR: `{{ hello_cont.container.NetworkSettings.IPAddress }}`
+          HELLO_ADDR: "{{ hello_cont.container.NetworkSettings.IPAddress }}"
